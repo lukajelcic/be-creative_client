@@ -28,7 +28,7 @@ const useStyles = makeStyles({
 
 const AddCategory = () => {
     const [category, setCategory] = useState({
-        category: ''
+        categoryName: ''
     });
     const [dialog, setDialog] = useState(false);
 
@@ -86,12 +86,12 @@ const AddCategory = () => {
                 <DialogContent>
                     <form onSubmit={handleSubmit}>
                         <TextField
-                            name="category"
+                            name="categoryName"
                             type="text"
                             label="Name of category"
                             placeholder="Name of category"
-                            value={category.category || ''}
-                            onChange={e => setCategory(e.target.value)}
+                            value={category.categoryName || ''}
+                            onChange={handleChange}
                             className={classes.textField}
                             fullWidth />
                         <Button

@@ -10,10 +10,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import CloseIcon from '@material-ui/icons/Close';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-
-
-
-
+import Input from '@material-ui/core/Input';
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles({
@@ -38,8 +35,8 @@ const PostIdea = () => {
         rate: null,
         expetacions: '',
     });
-    const [dialog, setDialog] = useState(false);
     const [categories, setCategories] = useState([]);
+    const [dialog, setDialog] = useState(false);
 
     const classes = useStyles();
 
@@ -72,10 +69,6 @@ const PostIdea = () => {
     const handleChange = (e) => {
         const { name, value } = e.target
         setIdea(prevState => ({
-            ...prevState,
-            [name]: value
-        }))
-        setCategories(prevState => ({
             ...prevState,
             [name]: value
         }))
@@ -135,12 +128,16 @@ const PostIdea = () => {
                             fullWidth />
 
                         <Select
-                            id="category"
-                            name="category"
-                            onChange={handleChange}
+                            labelId="categories"
+                            id="categories"
+                            value={categories}
+                            onChange={(e) => setCategories(e.target.value)}
+                            input={<Input />}
                             fullWidth
                         >
-                            {categories.map(c => (<MenuItem key={Math.random(0, 10000000)}>{c.categoryId}</MenuItem>))}
+                            <MenuItem key={Math.random(0, 100000)} value={categories.map(c => c.categoryId)}>
+                                {categories.map(m => m.categoryId)}
+                            </MenuItem>
                         </Select>
 
                         <TextField
